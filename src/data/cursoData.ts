@@ -1,5 +1,5 @@
 // Capacitación Cristiana Bíblica - Datos del Curso
-// Compilado por Pastor Esteban West
+// Compilado por los Pastores Esteban West y Jorgelina González
 
 export interface SeccionLeccion {
   titulo: string;

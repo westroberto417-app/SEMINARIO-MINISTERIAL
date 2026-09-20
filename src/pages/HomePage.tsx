@@ -29,7 +29,7 @@ export default function HomePage() {
             <div className="flex-1">
               <div className="flex items-center gap-2">
                 <span className="rounded-full bg-amber-100 text-amber-800 font-semibold px-2.5 py-0.5 text-xs">
-                  Palabras del Autor
+                  Palabras de los Autores
                 </span>
                 <span className="text-xs text-slate-400 font-medium">Seminario Ministerial</span>
               </div>
@@ -39,7 +39,7 @@ export default function HomePage() {
               </h2>
 
               <p className="mt-3 text-base leading-relaxed text-slate-700">
-                <strong>Esteban West</strong> pastor, educador, comunicador y técnico informático; presenta este material de estudio bíblico; extrayendo información de diferentes expertos y maestros cristianos de renombre (como Armando Alducín, Bernardo Stamateas, Derek Prince, Charles Spurgeon, Billy Graham, Dante Gebel, John MacArthur y otros), ha compilado en este curso los temas más fundamentales que todo cristiano comprometido con Dios tendría que saber, como también el abordaje bíblico y psicológico necesario para encarar el tema del servicio a Dios desde una perspectiva de sanidad integral.
+                Los pastores <strong>Esteban West</strong> y <strong>Jorgelina González</strong> como, educadores, consejeros y comunicadores; presentan este material de estudio bíblico; desde la experiencia propia y extrayendo información de diferentes expertos y maestros cristianos de renombre (como Armando Alducín, Bernardo Stamateas, Derek Prince, Charles Spurgeon, Billy Graham, Dante Gebel, John MacArthur y otros), han compilado en este curso los temas más fundamentales que todo cristiano comprometido con Dios tendría que saber, como también el abordaje bíblico y psicológico necesario para encarar el tema del servicio a Dios desde una perspectiva de sanidad integral.
               </p>
 
               <div className="mt-5 flex flex-wrap items-center gap-4 text-xs text-slate-500">

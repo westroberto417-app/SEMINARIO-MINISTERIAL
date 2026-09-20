@@ -25,7 +25,7 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-sm leading-relaxed text-slate-300 max-w-md">
-              Programa formativo ministerial compilado por el Pastor Esteban West, integrando las enseñanzas de reconocidos ministros y maestros bíblicos para la edificación y madurez de la iglesia de Cristo.
+              Programa formativo ministerial compilado por los Pastores Esteban West y Jorgelina González, integrando las enseñanzas de reconocidos ministros y maestros bíblicos para la edificación y madurez de la iglesia de Cristo.
             </p>
             <div className="flex items-center gap-2 text-xs text-amber-300/90 pt-1">
               <ShieldCheck className="h-4 w-4" />
@@ -97,7 +97,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="mt-12 border-t border-slate-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <p>
-            &copy; {new Date().getFullYear()} Seminario Ministerial — Pastor Esteban West. Todos los derechos reservados.
+            &copy; {new Date().getFullYear()} Seminario Ministerial — Pastores Esteban West y Jorgelina González. Todos los derechos reservados.
           </p>
           <p className="flex items-center gap-1">
             <span>Para la gloria de Dios</span>

@@ -16,7 +16,7 @@ export default defineConfig(() => {
           id: '/',
           name: 'Capacitación Cristiana Bíblica',
           short_name: 'Capacitación',
-          description: 'Curso multimedia de Capacitación Cristiana Bíblica compilado por el Pastor Esteban West. 4 niveles de formación integral teológica y ministerial.',
+          description: 'Curso multimedia de Capacitación Cristiana Bíblica compilado por los Pastores Esteban West y Jorgelina González. 4 niveles de formación integral teológica y ministerial.',
           theme_color: '#0f172a',
           background_color: '#dfe7f2',
           display: 'standalone',
