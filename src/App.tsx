@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import { ProgressProvider } from './context/ProgressContext';
 import ScrollToTop from './components/ScrollToTop';
 import Navbar from './components/Navbar';
@@ -26,6 +27,7 @@ export default function App() {
           </main>
           <Footer />
         </div>
+        <SpeedInsights />
       </ProgressProvider>
     </BrowserRouter>
   );
