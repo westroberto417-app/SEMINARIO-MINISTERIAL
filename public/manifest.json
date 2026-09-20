@@ -1,0 +1,33 @@
+{
+  "id": "/",
+  "name": "Capacitación Cristiana Bíblica",
+  "short_name": "Capacitación",
+  "description": "Curso multimedia de Capacitación Cristiana Bíblica compilado por el Pastor Esteban West. 4 niveles de formación integral teológica y ministerial.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#dfe7f2",
+  "theme_color": "#0f172a",
+  "orientation": "portrait",
+  "categories": ["education", "books"],
+  "icons": [
+    {
+      "src": "/pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-maskable-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "name": "Capacitación Cristiana Bíblica",
+  "description": "Curso multimedia de Capacitación Cristiana Bíblica compilado por el Pastor Esteban West. Cuatro niveles de formación integral desde el despertar ante los sistemas del mundo hasta el ministerio en Dios.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

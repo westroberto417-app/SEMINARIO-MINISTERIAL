@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="50%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#090d16" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="50%" stop-color="#fbbf24" />
+      <stop offset="100%" stop-color="#d97706" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000" flood-opacity="0.4" />
+    </filter>
+  </defs>
+
+  <!-- Background rounded rectangle -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)" />
+
+  <!-- Inner subtle border -->
+  <rect x="16" y="16" width="480" height="480" rx="96" fill="none" stroke="#fbbf24" stroke-opacity="0.25" stroke-width="4" />
+
+  <!-- Golden Cross & Open Bible Icon -->
+  <g filter="url(#shadow)" transform="translate(106, 96)">
+    <!-- Latin Cross centered -->
+    <path d="M 150 18 L 150 78 L 90 78 L 90 108 L 150 108 L 150 190 L 170 190 L 170 108 L 230 108 L 230 78 L 170 78 L 170 18 Z" fill="url(#goldGrad)" />
+    
+    <!-- Open Book Pages -->
+    <path d="M 160 215 C 115 195 40 205 15 215 C 10 217 5 222 5 228 L 5 305 C 5 312 11 317 18 315 C 45 306 110 298 150 316 C 156 319 164 319 170 316 C 210 298 275 306 302 315 C 309 317 315 312 315 305 L 315 228 C 315 222 310 217 305 215 C 280 205 205 195 160 215 Z" fill="#ffffff" fill-opacity="0.95" />
+    
+    <!-- Spine and text lines on pages -->
+    <path d="M 160 218 L 160 316" stroke="#0f172a" stroke-width="4" stroke-linecap="round" />
+    
+    <!-- Page accent lines left -->
+    <line x1="45" y1="242" x2="135" y2="240" stroke="#94a3b8" stroke-width="3.5" stroke-linecap="round" />
+    <line x1="45" y1="262" x2="135" y2="260" stroke="#94a3b8" stroke-width="3.5" stroke-linecap="round" />
+    <line x1="45" y1="282" x2="120" y2="280" stroke="#94a3b8" stroke-width="3.5" stroke-linecap="round" />
+
+    <!-- Page accent lines right -->
+    <line x1="185" y1="240" x2="275" y2="242" stroke="#94a3b8" stroke-width="3.5" stroke-linecap="round" />
+    <line x1="185" y1="260" x2="275" y2="262" stroke="#94a3b8" stroke-width="3.5" stroke-linecap="round" />
+    <line x1="185" y1="280" x2="260" y2="282" stroke="#94a3b8" stroke-width="3.5" stroke-linecap="round" />
+  </g>
+</svg>
