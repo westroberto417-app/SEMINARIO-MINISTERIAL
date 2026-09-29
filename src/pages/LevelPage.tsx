@@ -3,10 +3,8 @@ import { useParams, Link, Navigate } from 'react-router-dom';
 import { ArrowLeft, CheckCircle2, Circle, Layers, ChevronRight, ChevronLeft, BookOpen, Sparkles } from 'lucide-react';
 import { cursoData } from '../data/cursoData';
 import { useProgress } from '../context/ProgressContext';
-import { useDonacion } from '../context/DonacionContext';
 import LessonCard from '../components/LessonCard';
 import LevelMaterialsSection from '../components/LevelMaterialsSection';
-import AnimatedCoffeeIcon from '../components/AnimatedCoffeeIcon';
 import { SectionAudioPlayer } from '../components/SectionAudioPlayer';
 
 export default function LevelPage() {
@@ -14,7 +12,6 @@ export default function LevelPage() {
   const nivelId = parseInt(id || '1', 10);
   const nivel = cursoData.niveles.find(n => n.id === nivelId);
   const { progresoNivel, estaCompletada } = useProgress();
-  const { openDonacion } = useDonacion();
   const [filter, setFilter] = useState<'all' | 'pending' | 'completed'>('all');
 
   if (!nivel) {
@@ -208,32 +205,6 @@ export default function LevelPage() {
           colorSolid={nivel.colorSolid}
           nivelTitulo={nivel.titulo}
         />
-
-        {/* Mención discreta de colaboración del capítulo */}
-        <div className="mt-8 rounded-2xl border border-slate-200/90 bg-white/80 p-4 sm:p-5 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3 text-center sm:text-left">
-            <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-amber-50 text-amber-700 border border-amber-200">
-              <AnimatedCoffeeIcon size="sm" steamColor="#b45309" />
-            </div>
-            <div>
-              <p className="text-xs sm:text-sm font-semibold text-slate-800">
-                ¿Este material está bendiciendo tu vida?
-              </p>
-              <p className="text-xs text-slate-500">
-                Puedes colaborar con un cafecito voluntario para sostener esta plataforma bíblica gratuita.
-              </p>
-            </div>
-          </div>
-
-          <button
-            type="button"
-            onClick={openDonacion}
-            className="inline-flex items-center gap-2 rounded-xl border border-amber-300 bg-amber-50 hover:bg-amber-100 text-amber-900 px-4 py-2 text-xs font-bold transition-all cursor-pointer flex-shrink-0"
-          >
-            <AnimatedCoffeeIcon size="xs" steamColor="#b45309" />
-            <span>Colaborar con un cafecito</span>
-          </button>
-        </div>
 
         {/* Bottom Level Switch Navigation */}
         <div className="mt-8 sm:mt-10 flex items-center justify-between border-t border-slate-200 pt-6 sm:pt-8">
