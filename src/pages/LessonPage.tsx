@@ -13,10 +13,8 @@ import {
 } from 'lucide-react';
 import { cursoData, enriquecimientoPorLeccion } from '../data/cursoData';
 import { useProgress } from '../context/ProgressContext';
-import { useDonacion } from '../context/DonacionContext';
 import LessonEnrichment from '../components/LessonEnrichment';
 import { SectionAudioPlayer } from '../components/SectionAudioPlayer';
-import AnimatedCoffeeIcon from '../components/AnimatedCoffeeIcon';
 
 export default function LessonPage() {
   const { id, leccionId } = useParams<{ id: string; leccionId: string }>();
@@ -25,7 +23,6 @@ export default function LessonPage() {
   const leccion = nivel?.lecciones.find(l => l.id === leccionId);
 
   const { estaCompletada, toggleLeccion, guardarUltimaLeccion } = useProgress();
-  const { openDonacion } = useDonacion();
 
   useEffect(() => {
     if (nivel && leccion) {
@@ -86,16 +83,6 @@ export default function LessonPage() {
                 text={leccion.secciones.map((s, i) => `Punto ${i + 1}: ${s.titulo}. ${s.contenido}`).join(' ... ')}
                 colorSolid={nivel.colorSolid}
               />
-
-              <button
-                type="button"
-                onClick={openDonacion}
-                className="inline-flex items-center gap-1.5 rounded-full border border-amber-300/40 bg-white/10 hover:bg-white/20 px-3 py-1.5 text-xs font-semibold text-amber-200 hover:text-white backdrop-blur-sm transition-all cursor-pointer shadow-2xs hover:scale-105 active:scale-95"
-                title="Colabora con un cafecito para sostener esta obra"
-              >
-                <AnimatedCoffeeIcon size="xs" steamColor="#FEF3C7" />
-                <span>Invitame un cafecito</span>
-              </button>
             </div>
           </div>
         </div>
@@ -211,32 +198,6 @@ export default function LessonPage() {
           <p className="mt-4 text-base sm:text-lg leading-relaxed text-slate-200">
             {leccion.reflexion}
           </p>
-        </div>
-
-        {/* Banner de Cafecito para colaborar en esta lección */}
-        <div className="mt-8 rounded-2xl border border-amber-200/90 bg-gradient-to-r from-amber-50 via-amber-100/60 to-orange-50 p-4 sm:p-5 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3.5">
-            <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-2xl bg-amber-500 text-white shadow-sm ring-2 ring-amber-300">
-              <AnimatedCoffeeIcon size="sm" steamColor="#FFF" />
-            </div>
-            <div>
-              <h4 className="text-sm font-bold text-amber-950">
-                ¿Esta lección está bendiciendo tu vida?
-              </h4>
-              <p className="text-xs text-amber-900/80">
-                Colabora con nosotros con un cafecito para seguir llevando este material a muchos más.
-              </p>
-            </div>
-          </div>
-
-          <button
-            type="button"
-            onClick={openDonacion}
-            className="inline-flex items-center gap-2 rounded-xl bg-amber-600 hover:bg-amber-700 px-4 py-2.5 text-xs sm:text-sm font-bold text-white shadow-sm hover:shadow hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer flex-shrink-0"
-          >
-            <AnimatedCoffeeIcon size="xs" steamColor="#FFF" />
-            <span>Colaborar con un cafecito</span>
-          </button>
         </div>
 
         {/* Interactive Completion Button */}

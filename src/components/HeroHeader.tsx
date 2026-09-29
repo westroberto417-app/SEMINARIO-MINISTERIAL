@@ -1,10 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Sparkles, Layers, BookOpen, ArrowRight, PlayCircle } from 'lucide-react';
+import { Sparkles, Layers, BookOpen, ArrowRight } from 'lucide-react';
 import { Curso } from '../types';
 import { useProgress } from '../context/ProgressContext';
-import { useDonacion } from '../context/DonacionContext';
-import AnimatedCoffeeIcon from './AnimatedCoffeeIcon';
 
 interface HeroHeaderProps {
   curso: Curso;
@@ -13,7 +11,6 @@ interface HeroHeaderProps {
 
 export default function HeroHeader({ curso, totalLecciones }: HeroHeaderProps) {
   const { completadas, ultimaLeccionVisitada } = useProgress();
-  const { openDonacion } = useDonacion();
 
   // Target last visited lesson, or next pending lesson, or first lesson
   let targetLessonLink = '/nivel/1/leccion/1-1';
@@ -83,7 +80,7 @@ export default function HeroHeader({ curso, totalLecciones }: HeroHeaderProps) {
             </div>
           </div>
 
-          {/* Call to Action: jump straight to last visited or next lesson & Colaboración */}
+          {/* Call to Action: jump straight to last visited or next lesson */}
           <div className="mt-6 sm:mt-8 flex flex-wrap items-center gap-3.5">
             <Link
               to={targetLessonLink}
@@ -92,16 +89,6 @@ export default function HeroHeader({ curso, totalLecciones }: HeroHeaderProps) {
               <span>{hasStarted ? 'Continuar formación' : 'Comenzar formación'}</span>
               <ArrowRight className="h-4 w-4" />
             </Link>
-
-            <button
-              type="button"
-              onClick={openDonacion}
-              className="inline-flex items-center gap-2.5 rounded-full border border-amber-300/40 bg-white/10 hover:bg-white/20 px-5 py-3 text-sm sm:text-base font-semibold text-amber-100 hover:text-white backdrop-blur-sm transition-all cursor-pointer shadow-sm hover:scale-[1.02] active:scale-[0.98]"
-              title="Colabora con un cafecito para seguir llevando este material a más personas"
-            >
-              <AnimatedCoffeeIcon size="sm" steamColor="#FDE68A" />
-              <span>Invitame un cafecito</span>
-            </button>
           </div>
         </div>
       </div>

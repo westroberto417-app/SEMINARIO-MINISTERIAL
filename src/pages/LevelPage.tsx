@@ -82,7 +82,7 @@ export default function LevelPage() {
               {nivel.descripcion}
             </p>
 
-            {/* CTAs in Chapter header: Audio del capítulo & Cafecito */}
+            {/* Audio del capítulo */}
             <div className="mt-6 flex flex-wrap items-center gap-3">
               <SectionAudioPlayer
                 id={`level-header-audio-${nivel.id}`}
@@ -90,16 +90,6 @@ export default function LevelPage() {
                 text={`Capítulo ${nivel.id}: ${nivel.titulo}. ${nivel.subtitulo}. ${nivel.descripcion}`}
                 colorSolid={nivel.colorSolid}
               />
-
-              <button
-                type="button"
-                onClick={openDonacion}
-                className="inline-flex items-center gap-2.5 rounded-full border border-amber-300/40 bg-white/10 hover:bg-white/20 px-4 py-2 sm:px-5 sm:py-2 text-xs sm:text-sm font-semibold text-amber-100 hover:text-white backdrop-blur-sm transition-all cursor-pointer shadow-sm hover:scale-[1.02] active:scale-[0.98]"
-                title="Colabora con un cafecito para sostener este material"
-              >
-                <AnimatedCoffeeIcon size="sm" steamColor="#FEF3C7" />
-                <span>Invitame un cafecito</span>
-              </button>
             </div>
           </div>
         </div>
@@ -107,32 +97,6 @@ export default function LevelPage() {
 
       {/* Main Content Area */}
       <div className="mx-auto max-w-5xl px-6 py-8 sm:py-10">
-        {/* Banner de Cafecito para cada uno de los 4 capítulos */}
-        <div className="mb-6 sm:mb-8 rounded-2xl border border-amber-200/90 bg-gradient-to-r from-amber-50 via-amber-100/60 to-orange-50 p-4 sm:p-5 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3.5">
-            <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-2xl bg-amber-500 text-white shadow-sm ring-2 ring-amber-300">
-              <AnimatedCoffeeIcon size="sm" steamColor="#FFF" />
-            </div>
-            <div>
-              <h4 className="text-sm font-bold text-amber-950">
-                ¿Este capítulo está bendiciendo tu vida?
-              </h4>
-              <p className="text-xs text-amber-900/80">
-                Colabora con nosotros con un cafecito para seguir llevando este material a muchos más.
-              </p>
-            </div>
-          </div>
-
-          <button
-            type="button"
-            onClick={openDonacion}
-            className="inline-flex items-center gap-2 rounded-xl bg-amber-600 hover:bg-amber-700 px-4 py-2.5 text-xs sm:text-sm font-bold text-white shadow-sm hover:shadow hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer flex-shrink-0"
-          >
-            <AnimatedCoffeeIcon size="xs" steamColor="#FFF" />
-            <span>Colaborar con un cafecito</span>
-          </button>
-        </div>
-
         {/* Progress Card */}
         <div className="mb-6 sm:mb-8 rounded-3xl border border-slate-200 bg-white p-5 sm:p-7 shadow-xs">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -244,6 +208,32 @@ export default function LevelPage() {
           colorSolid={nivel.colorSolid}
           nivelTitulo={nivel.titulo}
         />
+
+        {/* Mención discreta de colaboración del capítulo */}
+        <div className="mt-8 rounded-2xl border border-slate-200/90 bg-white/80 p-4 sm:p-5 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-3 text-center sm:text-left">
+            <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-amber-50 text-amber-700 border border-amber-200">
+              <AnimatedCoffeeIcon size="sm" steamColor="#b45309" />
+            </div>
+            <div>
+              <p className="text-xs sm:text-sm font-semibold text-slate-800">
+                ¿Este material está bendiciendo tu vida?
+              </p>
+              <p className="text-xs text-slate-500">
+                Puedes colaborar con un cafecito voluntario para sostener esta plataforma bíblica gratuita.
+              </p>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            onClick={openDonacion}
+            className="inline-flex items-center gap-2 rounded-xl border border-amber-300 bg-amber-50 hover:bg-amber-100 text-amber-900 px-4 py-2 text-xs font-bold transition-all cursor-pointer flex-shrink-0"
+          >
+            <AnimatedCoffeeIcon size="xs" steamColor="#b45309" />
+            <span>Colaborar con un cafecito</span>
+          </button>
+        </div>
 
         {/* Bottom Level Switch Navigation */}
         <div className="mt-8 sm:mt-10 flex items-center justify-between border-t border-slate-200 pt-6 sm:pt-8">

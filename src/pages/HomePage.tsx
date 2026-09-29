@@ -5,50 +5,19 @@ import HeroHeader from '../components/HeroHeader';
 import InductionModule from '../components/InductionModule';
 import LevelCard from '../components/LevelCard';
 import { useProgress } from '../context/ProgressContext';
-import { useDonacion } from '../context/DonacionContext';
 import ResetProgressModal from '../components/ResetProgressModal';
 import { SectionAudioPlayer } from '../components/SectionAudioPlayer';
-import AnimatedCoffeeIcon from '../components/AnimatedCoffeeIcon';
 
 export default function HomePage() {
   const totalLecciones = cursoData.niveles.reduce((acc, n) => acc + n.lecciones.length, 0);
   const { progresoTotal, reiniciarProgreso } = useProgress();
   const { total, hechas, porcentaje } = progresoTotal();
-  const { openDonacion } = useDonacion();
   const [showResetModal, setShowResetModal] = useState(false);
 
   return (
     <div className="min-h-screen bg-[#dfe7f2]">
       {/* Hero Header */}
       <HeroHeader curso={cursoData} totalLecciones={totalLecciones} />
-
-      {/* Banner discreto y visible de Colaboración en la Pantalla Principal */}
-      <section className="border-b border-amber-200/70 bg-gradient-to-r from-amber-50 via-amber-100/50 to-orange-50 py-4 sm:py-5">
-        <div className="mx-auto max-w-4xl px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3.5 text-center sm:text-left">
-            <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-2xl bg-amber-500 text-white shadow-xs ring-2 ring-amber-300">
-              <AnimatedCoffeeIcon size="sm" steamColor="#FFF" />
-            </div>
-            <div>
-              <p className="text-xs sm:text-sm font-bold text-amber-950">
-                ¿Este material está bendiciendo tu vida?
-              </p>
-              <p className="text-xs text-amber-900/80">
-                Colabora con nosotros con un cafecito para seguir llevando este contenido a muchos más.
-              </p>
-            </div>
-          </div>
-
-          <button
-            type="button"
-            onClick={openDonacion}
-            className="inline-flex items-center gap-2 rounded-xl bg-amber-600 hover:bg-amber-700 px-4 py-2.5 text-xs sm:text-sm font-bold text-white shadow-sm hover:shadow hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer flex-shrink-0"
-          >
-            <AnimatedCoffeeIcon size="xs" steamColor="#FFF" />
-            <span>Colaborar con un cafecito</span>
-          </button>
-        </div>
-      </section>
 
       {/* Presentación del Pastor Esteban West */}
       <section className="border-b border-slate-200 bg-white py-8 sm:py-10 md:py-12">
