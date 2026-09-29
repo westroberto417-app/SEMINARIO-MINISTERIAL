@@ -4,9 +4,7 @@ import {
   Copy,
   Check,
   ExternalLink,
-  Heart,
   Sparkles,
-  ShieldCheck,
   Edit3,
   RotateCcw,
   Save,
@@ -147,23 +145,6 @@ ${donacionData.cuitCuil ? `• CUIT/CUIL: ${donacionData.cuitCuil}\n` : ''}
 
         {/* Content Body */}
         <div className="p-5 sm:p-6 space-y-5 max-h-[calc(85vh-120px)] overflow-y-auto">
-          {/* Highlighted Quote requested by the user */}
-          <div className="relative rounded-2xl border-2 border-amber-200 bg-amber-50/80 p-4 sm:p-5 shadow-xs">
-            <div className="flex gap-3">
-              <div className="mt-0.5 text-amber-600 flex-shrink-0">
-                <Heart className="h-5 w-5 fill-amber-500 text-amber-600" />
-              </div>
-              <div>
-                <p className="font-heading text-sm sm:text-base font-semibold leading-snug text-amber-950">
-                  &ldquo;{donacionData.frasePrincipal}&rdquo;
-                </p>
-                <p className="mt-2 text-xs text-amber-800/80 font-medium">
-                  {donacionData.notaAgradecimiento}
-                </p>
-              </div>
-            </div>
-          </div>
-
           {/* Mercado Pago Account Card */}
           <div className="rounded-2xl border border-sky-200 bg-gradient-to-b from-sky-50/70 to-white p-4 sm:p-5 shadow-xs space-y-3.5">
             {/* Mercado Pago Badge Header */}
@@ -437,11 +418,6 @@ ${donacionData.cuitCuil ? `• CUIT/CUIL: ${donacionData.cuitCuil}\n` : ''}
             <span className="block text-[11px] font-bold text-amber-800 mt-1">
               — {donacionData.versiculoCita}
             </span>
-          </div>
-
-          <div className="flex items-center justify-center gap-2 text-[11px] text-slate-400">
-            <ShieldCheck className="h-4 w-4 text-emerald-600" />
-            <span>Transferencia directa, segura y 100% destinada a la obra formativa.</span>
           </div>
         </div>
 
