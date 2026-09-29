@@ -4,7 +4,6 @@ import {
   Copy,
   Check,
   ExternalLink,
-  Sparkles,
   Edit3,
   RotateCcw,
   Save,
@@ -127,11 +126,9 @@ ${donacionData.cuitCuil ? `• CUIT/CUIL: ${donacionData.cuitCuil}\n` : ''}
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="inline-flex items-center gap-1 rounded-full bg-amber-400/30 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-amber-100">
-                  <Sparkles className="h-3 w-3" />
-                  Invitame un Cafecito
+                <span className="inline-flex items-center rounded-full bg-amber-400/25 px-2.5 py-0.5 text-xs font-semibold tracking-wide text-amber-100">
+                  Gracias por...
                 </span>
-                <span className="text-[11px] text-amber-200/80 font-medium">Mercado Pago</span>
               </div>
               <h2 id="cafecito-modal-title" className="font-heading text-xl sm:text-2xl font-bold leading-tight text-white mt-1">
                 Colaborar con el Ministerio
