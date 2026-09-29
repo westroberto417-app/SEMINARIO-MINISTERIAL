@@ -3,16 +3,44 @@ import { Link } from 'react-router-dom';
 import { BookOpen, RotateCcw, ShieldCheck, Heart } from 'lucide-react';
 import { cursoData } from '../data/cursoData';
 import { useProgress } from '../context/ProgressContext';
+import { useDonacion } from '../context/DonacionContext';
 import ResetProgressModal from './ResetProgressModal';
+import AnimatedCoffeeIcon from './AnimatedCoffeeIcon';
 
 export default function Footer() {
   const { reiniciarProgreso, progresoTotal } = useProgress();
   const { hechas, total, porcentaje } = progresoTotal();
+  const { openDonacion } = useDonacion();
   const [showResetModal, setShowResetModal] = useState(false);
 
   return (
     <footer className="border-t border-slate-200 bg-slate-900 text-slate-400">
       <div className="mx-auto max-w-6xl px-6 py-12 md:py-16">
+        {/* Banner de Cafecito / Colaboración Ministerial */}
+        <div className="mb-10 rounded-2xl border border-amber-500/30 bg-gradient-to-r from-amber-950/40 via-slate-800/90 to-amber-950/30 p-5 sm:p-6 backdrop-blur-xs flex flex-col md:flex-row items-center justify-between gap-5">
+          <div className="flex items-start gap-4">
+            <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-amber-500/20 text-amber-400 border border-amber-400/30">
+              <AnimatedCoffeeIcon size="md" steamColor="#FDE68A" />
+            </div>
+            <div>
+              <h3 className="font-heading text-base font-bold text-white flex items-center gap-2">
+                <span>¿Este material está bendiciendo tu vida?</span>
+              </h3>
+              <p className="mt-1 text-xs sm:text-sm text-slate-300 max-w-xl">
+                Colabora con nosotros para seguir llevando este material a muchos más. Tu ofrenda o cafecito voluntario ayuda a sostener esta plataforma digital libre y gratuita.
+              </p>
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={openDonacion}
+            className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 px-4 py-2.5 text-xs font-bold text-white shadow-md hover:shadow-lg transition-all cursor-pointer whitespace-nowrap active:scale-95"
+          >
+            <AnimatedCoffeeIcon size="xs" steamColor="#FFF" />
+            <span>Colaborar con un cafecito (Mercado Pago)</span>
+          </button>
+        </div>
+
         <div className="grid gap-8 md:grid-cols-4">
           {/* Col 1: About */}
           <div className="md:col-span-2 space-y-4">

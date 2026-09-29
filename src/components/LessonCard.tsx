@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Quote, CheckCircle2, User, ArrowRight } from 'lucide-react';
 import { Leccion } from '../types';
 import { useProgress } from '../context/ProgressContext';
+import { SectionAudioPlayer } from './SectionAudioPlayer';
 
 interface LessonCardProps {
   leccion: Leccion;
@@ -23,8 +24,8 @@ export default function LessonCard({ leccion, nivelId, colorSolid, index }: Less
       <div>
         {/* Header with lesson index, completion badge, and minister */}
         <div className="flex items-start justify-between gap-3">
-          <div className="flex items-center gap-3">
-            <div className="relative">
+          <div className="flex items-start gap-3 flex-1 min-w-0">
+            <div className="relative flex-shrink-0">
               <div
                 className="flex h-11 w-11 items-center justify-center rounded-xl text-base font-bold text-white shadow-sm"
                 style={{ backgroundColor: colorSolid }}
@@ -38,11 +39,24 @@ export default function LessonCard({ leccion, nivelId, colorSolid, index }: Less
               )}
             </div>
 
-            <div>
-              <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
-                Lección {leccion.id}
-              </span>
-              <h4 className="font-heading text-base font-bold text-slate-900 group-hover:text-indigo-600 transition-colors leading-snug">
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center justify-between gap-2">
+                <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
+                  Lección {leccion.id}
+                </span>
+
+                {/* Direct audio button on card */}
+                <div onClick={e => { e.preventDefault(); e.stopPropagation(); }} className="flex-shrink-0">
+                  <SectionAudioPlayer
+                    id={`card-audio-${leccion.id}`}
+                    title={`Lección ${leccion.id}: ${leccion.titulo}`}
+                    text={`Lección ${leccion.id}: ${leccion.titulo}. ${leccion.subtitulo}. Versículo lema: ${leccion.versiculo}. Enfoque de referencia: ${leccion.ministro}. Introducción: ${leccion.introduccion}`}
+                    compact
+                  />
+                </div>
+              </div>
+
+              <h4 className="font-heading text-base font-bold text-slate-900 group-hover:text-indigo-600 transition-colors leading-snug mt-0.5">
                 {leccion.titulo}
               </h4>
             </div>

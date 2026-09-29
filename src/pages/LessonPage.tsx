@@ -13,7 +13,10 @@ import {
 } from 'lucide-react';
 import { cursoData, enriquecimientoPorLeccion } from '../data/cursoData';
 import { useProgress } from '../context/ProgressContext';
+import { useDonacion } from '../context/DonacionContext';
 import LessonEnrichment from '../components/LessonEnrichment';
+import { SectionAudioPlayer } from '../components/SectionAudioPlayer';
+import AnimatedCoffeeIcon from '../components/AnimatedCoffeeIcon';
 
 export default function LessonPage() {
   const { id, leccionId } = useParams<{ id: string; leccionId: string }>();
@@ -22,6 +25,7 @@ export default function LessonPage() {
   const leccion = nivel?.lecciones.find(l => l.id === leccionId);
 
   const { estaCompletada, toggleLeccion, guardarUltimaLeccion } = useProgress();
+  const { openDonacion } = useDonacion();
 
   useEffect(() => {
     if (nivel && leccion) {
@@ -73,6 +77,26 @@ export default function LessonPage() {
             <p className="mt-2 sm:mt-3 text-sm sm:text-xl font-light text-white/90">
               {leccion.subtitulo}
             </p>
+
+            <div className="mt-4 pt-3 border-t border-white/10 flex flex-wrap items-center gap-3">
+              <span className="text-xs text-white/70">Audio continuo:</span>
+              <SectionAudioPlayer
+                id={`full-${leccion.id}`}
+                title={`Lección completa: ${leccion.titulo}. Versículo: ${leccion.versiculo}. Introducción: ${leccion.introduccion}`}
+                text={leccion.secciones.map((s, i) => `Punto ${i + 1}: ${s.titulo}. ${s.contenido}`).join(' ... ')}
+                colorSolid={nivel.colorSolid}
+              />
+
+              <button
+                type="button"
+                onClick={openDonacion}
+                className="inline-flex items-center gap-1.5 rounded-full border border-amber-300/40 bg-white/10 hover:bg-white/20 px-3 py-1.5 text-xs font-semibold text-amber-200 hover:text-white backdrop-blur-sm transition-all cursor-pointer shadow-2xs hover:scale-105 active:scale-95"
+                title="Colabora con un cafecito para sostener esta obra"
+              >
+                <AnimatedCoffeeIcon size="xs" steamColor="#FEF3C7" />
+                <span>Invitame un cafecito</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -81,13 +105,22 @@ export default function LessonPage() {
       <article className="mx-auto max-w-3xl px-6 py-8 sm:py-10">
         {/* Biblical Scripture Card */}
         <div className="rounded-2xl border border-amber-200/80 bg-amber-50/70 p-5 sm:p-6 shadow-xs">
-          <div className="flex items-start gap-3.5">
-            <Quote className="h-6 w-6 flex-shrink-0 text-amber-600 mt-0.5" />
-            <div>
-              <p className="font-serif text-base sm:text-lg italic leading-relaxed text-slate-800">
-                &ldquo;{leccion.versiculo}&rdquo;
-              </p>
+          <div className="flex items-start justify-between gap-3.5">
+            <div className="flex items-start gap-3.5">
+              <Quote className="h-6 w-6 flex-shrink-0 text-amber-600 mt-0.5" />
+              <div>
+                <p className="font-serif text-base sm:text-lg italic leading-relaxed text-slate-800">
+                  &ldquo;{leccion.versiculo}&rdquo;
+                </p>
+              </div>
             </div>
+            <SectionAudioPlayer
+              id={`versiculo-${leccion.id}`}
+              title="Versículo Bíblico Lema"
+              text={leccion.versiculo}
+              colorSolid="#d97706"
+              compact
+            />
           </div>
         </div>
 
@@ -102,9 +135,18 @@ export default function LessonPage() {
 
         {/* Introduction */}
         <div className="mt-8">
-          <h3 className="font-heading text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
-            Introducción a la lección
-          </h3>
+          <div className="flex items-center justify-between gap-3 mb-2">
+            <h3 className="font-heading text-xs font-bold uppercase tracking-wider text-slate-400">
+              Introducción a la lección
+            </h3>
+            <SectionAudioPlayer
+              id={`intro-${leccion.id}`}
+              title={`Introducción a la lección: ${leccion.titulo}`}
+              text={leccion.introduccion}
+              colorSolid={nivel.colorSolid}
+              compact
+            />
+          </div>
           <p className="text-base sm:text-lg leading-relaxed text-slate-700 font-normal">
             {leccion.introduccion}
           </p>
@@ -114,16 +156,28 @@ export default function LessonPage() {
         <div className="mt-12 space-y-10">
           {leccion.secciones.map((sec, idx) => (
             <section key={idx} className="space-y-3">
-              <div className="flex items-center gap-3">
-                <span
-                  className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-xl text-sm font-bold text-white shadow-xs"
-                  style={{ backgroundColor: nivel.colorSolid }}
-                >
-                  {idx + 1}
-                </span>
-                <h2 className="font-heading text-xl sm:text-2xl font-bold text-slate-900">
-                  {sec.titulo}
-                </h2>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div className="flex items-center gap-3">
+                  <span
+                    className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-xl text-sm font-bold text-white shadow-xs"
+                    style={{ backgroundColor: nivel.colorSolid }}
+                  >
+                    {idx + 1}
+                  </span>
+                  <h2 className="font-heading text-xl sm:text-2xl font-bold text-slate-900">
+                    {sec.titulo}
+                  </h2>
+                </div>
+
+                <div className="pl-11 sm:pl-0">
+                  <SectionAudioPlayer
+                    id={`sec-${leccion.id}-${idx}`}
+                    title={`Sección ${idx + 1}: ${sec.titulo}`}
+                    text={sec.contenido}
+                    colorSolid={nivel.colorSolid}
+                    compact
+                  />
+                </div>
               </div>
               <div className="pl-11">
                 <p className="text-base leading-relaxed text-slate-700">
@@ -139,15 +193,50 @@ export default function LessonPage() {
 
         {/* Personal Reflection Card */}
         <div className="mt-12 rounded-3xl bg-slate-900 p-6 sm:p-8 text-white shadow-lg">
-          <div className="flex items-center gap-2.5 text-amber-400">
-            <Sparkles className="h-5 w-5" />
-            <h3 className="font-heading text-sm font-bold uppercase tracking-wider">
-              Pregunta de Reflexión y Aplicación Personal
-            </h3>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-amber-400">
+            <div className="flex items-center gap-2.5">
+              <Sparkles className="h-5 w-5" />
+              <h3 className="font-heading text-sm font-bold uppercase tracking-wider">
+                Pregunta de Reflexión y Aplicación Personal
+              </h3>
+            </div>
+            <SectionAudioPlayer
+              id={`refl-${leccion.id}`}
+              title="Pregunta de Reflexión y Aplicación Personal"
+              text={leccion.reflexion}
+              colorSolid="#f59e0b"
+              compact
+            />
           </div>
           <p className="mt-4 text-base sm:text-lg leading-relaxed text-slate-200">
             {leccion.reflexion}
           </p>
+        </div>
+
+        {/* Banner de Cafecito para colaborar en esta lección */}
+        <div className="mt-8 rounded-2xl border border-amber-200/90 bg-gradient-to-r from-amber-50 via-amber-100/60 to-orange-50 p-4 sm:p-5 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-3.5">
+            <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-2xl bg-amber-500 text-white shadow-sm ring-2 ring-amber-300">
+              <AnimatedCoffeeIcon size="sm" steamColor="#FFF" />
+            </div>
+            <div>
+              <h4 className="text-sm font-bold text-amber-950">
+                ¿Esta lección está bendiciendo tu vida?
+              </h4>
+              <p className="text-xs text-amber-900/80">
+                Colabora con nosotros con un cafecito para seguir llevando este material a muchos más.
+              </p>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            onClick={openDonacion}
+            className="inline-flex items-center gap-2 rounded-xl bg-amber-600 hover:bg-amber-700 px-4 py-2.5 text-xs sm:text-sm font-bold text-white shadow-sm hover:shadow hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer flex-shrink-0"
+          >
+            <AnimatedCoffeeIcon size="xs" steamColor="#FFF" />
+            <span>Colaborar con un cafecito</span>
+          </button>
         </div>
 
         {/* Interactive Completion Button */}

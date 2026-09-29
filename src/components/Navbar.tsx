@@ -3,9 +3,11 @@ import { Link, useLocation } from 'react-router-dom';
 import { BookOpen, Search, Menu, X, CheckCircle2, RotateCcw } from 'lucide-react';
 import { cursoData } from '../data/cursoData';
 import { useProgress } from '../context/ProgressContext';
+import { useDonacion } from '../context/DonacionContext';
 import SearchModal from './SearchModal';
 import ResetProgressModal from './ResetProgressModal';
 import PWAInstallButton from './PWAInstallButton';
+import AnimatedCoffeeIcon from './AnimatedCoffeeIcon';
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -13,6 +15,7 @@ export default function Navbar() {
   const [showResetModal, setShowResetModal] = useState(false);
   const location = useLocation();
   const { progresoTotal, reiniciarProgreso } = useProgress();
+  const { openDonacion } = useDonacion();
   const total = progresoTotal();
 
   return (
@@ -66,7 +69,18 @@ export default function Navbar() {
           </nav>
 
           {/* Right Tools */}
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex items-center gap-2 sm:gap-2.5">
+            {/* Cafecito donation button */}
+            <button
+              onClick={openDonacion}
+              className="flex items-center gap-1.5 rounded-xl border border-amber-300/80 bg-gradient-to-r from-amber-50 to-amber-100/90 px-2 sm:px-3 py-1.5 text-xs font-bold text-amber-900 hover:border-amber-400 hover:from-amber-100 hover:to-amber-200 transition-all cursor-pointer shadow-2xs group"
+              title="Si este material bendice tu vida, colabora con un cafecito"
+              aria-label="Invitanos un cafecito"
+            >
+              <AnimatedCoffeeIcon size="xs" steamColor="#B45309" />
+              <span className="text-xs font-bold">Cafecito</span>
+            </button>
+
             {/* Install PWA Button */}
             <PWAInstallButton />
 
@@ -119,6 +133,27 @@ export default function Navbar() {
                 <span className="text-xs text-slate-400">{nivel.lecciones.length} lecciones</span>
               </Link>
             ))}
+
+            {/* Cafecito in mobile menu */}
+            <div className="pt-2 border-t border-slate-100">
+              <button
+                type="button"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  openDonacion();
+                }}
+                className="w-full flex items-center justify-between rounded-xl px-3 py-2 text-xs font-semibold text-amber-900 bg-amber-50 hover:bg-amber-100 border border-amber-200 transition-colors cursor-pointer"
+              >
+                <div className="flex items-center gap-2">
+                  <AnimatedCoffeeIcon size="xs" steamColor="#B45309" />
+                  <span>Invitanos un cafecito a los pastores</span>
+                </div>
+                <span className="text-[10px] bg-amber-200/80 text-amber-800 px-2 py-0.5 rounded-full font-bold">
+                  Mercado Pago
+                </span>
+              </button>
+            </div>
+
             <div className="pt-2 border-t border-slate-100 flex items-center justify-between px-3 text-xs text-slate-500">
               <span>Progreso general</span>
               <span className="font-semibold text-slate-800">{total.porcentaje}% ({total.hechas}/{total.total} lecciones)</span>

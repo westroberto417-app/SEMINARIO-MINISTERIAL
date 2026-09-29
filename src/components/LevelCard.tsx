@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Eye, BookOpen, HeartPulse, Church, ChevronRight } from 'lucide-react';
 import { Nivel } from '../types';
 import { useProgress } from '../context/ProgressContext';
+import { SectionAudioPlayer } from './SectionAudioPlayer';
 
 interface LevelCardProps {
   nivel: Nivel;
@@ -61,8 +62,16 @@ export default function LevelCard({ nivel }: LevelCardProps) {
           </div>
         </div>
 
-        {/* Level Tag Pill */}
-        <div className="absolute top-5 right-5">
+        {/* Level Tag Pill and Audio */}
+        <div className="absolute top-5 right-5 flex items-center gap-2">
+          <div onClick={e => { e.preventDefault(); e.stopPropagation(); }}>
+            <SectionAudioPlayer
+              id={`level-card-audio-${nivel.id}`}
+              title={`Capítulo ${nivel.id}: ${nivel.titulo}`}
+              text={`Nivel ${nivel.id}: ${nivel.titulo}. ${nivel.subtitulo}. ${nivel.descripcion}`}
+              compact
+            />
+          </div>
           <span className="rounded-full bg-slate-950/60 px-3.5 py-1 text-xs font-semibold text-white backdrop-blur-md ring-1 ring-white/10">
             Nivel {nivel.id}
           </span>
