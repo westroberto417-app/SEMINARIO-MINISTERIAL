@@ -94,6 +94,23 @@ ${donacionData.cuitCuil ? `• CUIT/CUIL: ${donacionData.cuitCuil}\n` : ''}
     setIsEditing(false);
   };
 
+  const handleOpenMercadoPago = () => {
+    try {
+      if (navigator?.clipboard?.writeText) {
+        navigator.clipboard.writeText(donacionData.alias);
+        setCopiedField('alias');
+        setTimeout(() => setCopiedField(null), 3000);
+      }
+    } catch {
+      // Ignore
+    }
+  };
+
+  const activeMercadoPagoUrl =
+    donacionData.mercadoPagoLink && !donacionData.mercadoPagoLink.includes('link.mercadopago.com.ar')
+      ? donacionData.mercadoPagoLink
+      : 'https://www.mercadopago.com.ar';
+
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 overflow-y-auto bg-slate-950/70 backdrop-blur-sm animate-in fade-in duration-200"
@@ -225,6 +242,19 @@ ${donacionData.cuitCuil ? `• CUIT/CUIL: ${donacionData.cuitCuil}\n` : ''}
                     value={editForm.email}
                     onChange={e => setEditForm({ ...editForm, email: e.target.value })}
                     className="w-full rounded-lg border border-slate-300 px-3 py-1.5 text-xs focus:border-sky-500 focus:outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-[11px] font-semibold text-slate-600 mb-1">
+                    Link de Mercado Pago (web o link de cobro):
+                  </label>
+                  <input
+                    type="url"
+                    value={editForm.mercadoPagoLink}
+                    onChange={e => setEditForm({ ...editForm, mercadoPagoLink: e.target.value })}
+                    className="w-full rounded-lg border border-slate-300 px-3 py-1.5 text-xs focus:border-sky-500 focus:outline-none"
+                    placeholder="https://www.mercadopago.com.ar"
                   />
                 </div>
 
@@ -383,10 +413,12 @@ ${donacionData.cuitCuil ? `• CUIT/CUIL: ${donacionData.cuitCuil}\n` : ''}
               </button>
 
               <a
-                href={donacionData.mercadoPagoLink || 'https://link.mercadopago.com.ar'}
+                href={activeMercadoPagoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={handleOpenMercadoPago}
                 className="w-full inline-flex items-center justify-center gap-1.5 rounded-xl bg-[#009EE3] hover:bg-[#0081B8] text-white py-2.5 px-3 text-xs font-bold shadow-xs hover:shadow-sm transition-all cursor-pointer"
+                title="Abrir Mercado Pago (copia el Alias automáticamente)"
               >
                 <span>Ir a Mercado Pago</span>
                 <ExternalLink className="h-3.5 w-3.5" />

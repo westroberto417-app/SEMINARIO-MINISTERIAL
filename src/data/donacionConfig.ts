@@ -24,7 +24,7 @@ export const DONACION_DEFAULT: DonacionData = {
   email: "WESTesteban@gmail.com",
   banco: "Mercado Pago",
   cuitCuil: "20-XXXXXXXX-X",
-  mercadoPagoLink: "https://link.mercadopago.com.ar",
+  mercadoPagoLink: "https://www.mercadopago.com.ar",
   notaAgradecimiento: "Tu colaboración voluntaria hace posible sostener la plataforma digital, los costos de servidores y continuar produciendo más materiales bíblicos gratuitos y accesibles para toda la comunidad.",
   versiculo: "Cada uno dé como propuso en su corazón: no con tristeza, ni por necesidad, porque Dios ama al dador alegre.",
   versiculoCita: "2 Corintios 9:7"
@@ -40,6 +40,10 @@ export function getDonacionData(): DonacionData {
     // If the stored alias was the placeholder, override with real data
     if (parsed.alias === 'esteban.west.mp' || !parsed.alias) {
       return DONACION_DEFAULT;
+    }
+    // Fix previously broken link.mercadopago.com.ar
+    if (!parsed.mercadoPagoLink || parsed.mercadoPagoLink.includes('link.mercadopago.com.ar')) {
+      parsed.mercadoPagoLink = 'https://www.mercadopago.com.ar';
     }
     return { ...DONACION_DEFAULT, ...parsed };
   } catch {
